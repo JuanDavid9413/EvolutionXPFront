@@ -1,0 +1,63 @@
+<form autocomplete="off" [formGroup]="formGames">
+    <div class="form-group">
+        <div class="row">
+            <div class="col text-center">
+                <label>
+                    <h1> Ronda {{ countRounds  }}  </h1>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label> Jugador {{ jugadorNumber }}  </label>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label>Seleccione Movimiento:</label>
+                <br>
+                <select formControlName="movimient" placeholder="" class="form-control" [class.is-invalid]="ValidateMovimient">
+                    <option value="" selected>Seleccione..</option>
+                    <option *ngFor="let item of optionsGame" [ngValue]="item" >{{ item.name }}</option>
+                </select>
+                <small *ngIf="ValidateMovimient" class="form-text text-danger" >*Campo Requerido</small>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <button (click)="saveMovimient()" class="btn btn-primary"> Ok </button>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+
+<div *ngIf="currentGame.length > 0">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nombre Jugador</th>
+                <th scope="col">Ronda</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of currentGame">
+                <td>{{ item.players.name }}</td>
+                <td>{{ item.round }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

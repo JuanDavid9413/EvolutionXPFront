@@ -1,0 +1,9 @@
+<!-- Pantalla para agregar jugadores -->
+<div *ngIf="!mostrarGame" class="content-fluid container-game">
+    
+    <app-init-game (changeView)="mostrarGame= $event"></app-init-game>    
+</div>
+<!-- Pantalla de juego -->
+<div *ngIf="mostrarGame" class="content-fluid container-game">    
+    <app-war (finishGame)="mostrarGame = $event"></app-war>
+</div>
